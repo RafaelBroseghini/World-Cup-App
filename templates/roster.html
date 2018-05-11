@@ -1,0 +1,42 @@
+{% extends "bootstrap/base.html" %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" /> {% endblock %} {% block content %}
+<div class="ui inverted segment">
+    <div class="ui container">
+
+        <div class="ui inverted massive secondary menu">
+            <a class="active item">
+        Home
+    </a>
+            <a class="item">
+      Messages
+    </a>
+            <a class="item">
+      Friends
+    </a>
+        </div>
+    </div>
+</div>
+<div class="ui grid">
+    <div class="row">
+        <div class="eight wide column">
+            <div class="ui container">
+                <div class="ui segment">
+                    {% for player in roster%}
+                        <li>{{player}}</li>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui container">
+                <div class="ui segment"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block scripts %} {{ super ()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="/static/js/effects.js"></script>
+{% endblock %}
