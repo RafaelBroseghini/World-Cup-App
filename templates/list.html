@@ -1,16 +1,17 @@
 {% extends "bootstrap/base.html" %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" /> {% endblock %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>{% endblock %} {% block content %}
 <div class="ui inverted segment">
     <div class="ui container">
 
         <div class="ui inverted massive secondary menu">
-            <a class="item">
+            <a class="item" href="/">
         Home
     </a>
             <a class="active item">
       The {{year}} World Cup
     </a>
-    <a class="right item">
+            <a class="right item">
             Contact us
     </a>
         </div>
@@ -21,7 +22,7 @@
     <div class="row">
         <div class="three wide column">
             <div class="ui container">
-                <div class="ui piled segment">
+                <div class="ui inverted piled segment">
                     <h3>All teams competing in the {{year}} World Cup.</h3>
                     <div class="ui one column grid">
                         <div class="sixteen wide column">
@@ -35,23 +36,23 @@
         </div>
         <div class="ten wide column">
             <div class="ui container">
-                <div class="ui piled segment">
+                <div class="ui inverted piled segment">
                     <div class="ui container">
                         <h1 class="text-center">The {{year}} World Cup summarized!</h1>
-                        <h2 class="ui header">Dear Futebol fans,</h2>
-                        <hr>
+                        <h2 class="ui inverted header">Dear Futebol fans,</h2>
+                        <hr class="inverted">
                         <h2>
-                          {{data[0][0]}} was the year that <span>{{data[0][2]}}</span> .... Oh... the Beautiful {{data[0][2]}} hosted the
+                          <!-- {{data[0][0]}} was the year that <span>{{data[0][2]}}</span> .... Oh... the Beautiful {{data[0][2]}} hosted the
                           {{wc_instace}}{% if wc_instace > 1 %}th{% endif %}
                           {% if wc_instace == 1 %}st{% endif %} edition
                           of the World Cup.</h2>
-                          <h2>Throughout the competition, {{data[0][7]}} goals were scored among the {{data[0][8]}}
+                        <h2>Throughout the competition, {{data[0][7]}} goals were scored among the {{data[0][8]}}
                           teams that qualified in a total of {{data[0][9]}} matches!</h2>
-                        <h2>A total of {{data[0][10]}} fans attend the fixtures once again proving that futebol is the beautiful game!</h2>
-                        <div class="ui four statistics">
+                        <h2>A total of {{data[0][10]}} fans attend {{data[0][9]}} fixtures once again proving that futebol is the beautiful game!</h2> -->
+                        <div class="ui four inverted statistics">
                             <div class="statistic">
                                 <div class="value">
-                                    <i class="futbol outline icon"></i> {{data[0][7]}}
+                                    <i class="futbol outline icon animated bounceInDown"></i> {{data[0][7]}}
                                 </div>
                                 <div class="label">
                                     Goals
@@ -75,7 +76,7 @@
                             </div>
                             <div class="statistic">
                                 <div class="value">
-                                    <img src="/images/avatar/small/joe.jpg" class="ui circular inline image"> {{data[0][9]}}
+                                    {{data[0][9]}}
                                 </div>
                                 <div class="label">
                                     Matches
@@ -90,10 +91,10 @@
         <div class="three wide column">
             <div class="ui container">
                 <div class="ui inverted piled segment">
-                        <table class="ui selectable inverted table">
-                                <thead>
-                                  <tr>
-                                    <th><i class="trophy icon"></th>
+                    <table class="ui selectable inverted table">
+                        <thead>
+                            <tr>
+                                <th><i class="trophy icon"></th>
                                     <th class="right aligned">Country</th>
                                   </tr>
                                 </thead>
@@ -121,26 +122,70 @@
         </div>
         <div class="ten wide column">
             <div class="ui container">
-                <div class="ui segment">
+                <div class="ui  segment">
+                    <h1 class="ui header center aligned">
+                        News related with the {{year}} World Cup.
+                    </h1>
+                    <hr>
+                    <div class="ui container">
+                        <div class="ui divided items">
+                            {% if news["articles"]|length > 5 %}
+                            {% for n in range(0,5) %}
+                            <div class="item">
+                                <div class="ui medium rounded image animated bounceInLeft">
+                                    <img src="{{news["articles"][n]["urlToImage"]}}">
+                                </div>
+                              <div class="content">
+                                  <a class="header">{{news["articles"][n]["title"]}}</a>
+                                  <div class="meta">
+                                  <span class="cinema">{{news["articles"][n]["description"]}}</span>
+                                </div>
+                                <div class="extra">
+                                    <div class="ui right floated item">
+                                        <button class="ui button">
+                                            <a href="{{news["articles"][n]["url"]}}">Read!</a> 
 
-                    {% for n in range(0,news["articles"]|length) %}
-                    <ul>
-                        <li>{{news["articles"][n]["title"]}}</li>
-                        <!-- <img src="{{news["articles"][n]["urlToImage"]}}"> -->
-                        <a href="{{news["articles"][n]["url"]}}">Read it at {{news["articles"][n]["source"]["name"]}}</a>
-                    </ul>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="three wide column">
-            <div class="ui container">
-                <div class="ui segment">
-
+                                            <i class="right chevron icon"></i>
+                                    </button>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %} {% endif %} {% if news["articles"]|length
+    < 5 %} {% for n in range(0,news[ "articles"]|length) %} <div class="item">
+        <div class="ui medium rounded image">
+            <img src="{{news["articles"][n]["urlToImage"]}}">
+        </div>
+        <div class="content">
+            <a class="header">{{news["articles"][n]["title"]}}</a>
+            <div class="meta">
+                <span class="cinema">{{news["articles"][n]["description"]}}</span>
+            </div>
+            <div class="extra">
+                <div class="ui right floated item">
+                    <button class="ui button">
+                        <a href="{{news["articles"][n]["url"]}}">Read!</a>
+
+                        <i class="right chevron icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>
+{% endfor %} {% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="three wide column">
+    <div class="ui container">
+        <div class="ui segment">
+
+        </div>
+    </div>
+</div>
+</div>
 </div>
 <div class="ui longer modal">
     <i class="close icon"></i>
@@ -150,7 +195,7 @@
     <div class="image content">
         <div class="ui container">
             <form class="" action="/get_roster" method="get">
-              <input type="text" value={{year}} name="year" style="visibility:hidden;">
+                <input type="text" value={{year}} name="year" style="visibility:hidden;">
                 <div class="ui five column grid">
                     {% for team in participants %}
                     <div class="three wide column">

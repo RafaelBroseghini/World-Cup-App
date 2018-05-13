@@ -17,8 +17,8 @@ def index():
 def process_form():
     participants = get_teams_in_wc()
     res = get_info_on_year()
-    print(res)
     news = requests.get("https://newsapi.org/v2/everything?sources=espn,bbc-sport&q=fifa+world+cup+"+res[1]+"&apiKey=36071cd47bf64942aeb3ae57d16f664c").json()
+    print(news)
     return render_template("list.html", data=res[0], news=news, year=res[1], participants=participants, wc_instace = res[0][0][1])
 
 @app.route("/get_roster")
