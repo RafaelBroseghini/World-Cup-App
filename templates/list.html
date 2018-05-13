@@ -4,14 +4,14 @@
     <div class="ui container">
 
         <div class="ui inverted massive secondary menu">
-            <a class="active item">
+            <a class="item">
         Home
     </a>
-            <a class="item">
-      Messages
+            <a class="active item">
+      The {{year}} World Cup
     </a>
-            <a class="item">
-      Friends
+    <a class="right item">
+            Contact us
     </a>
         </div>
     </div>
@@ -21,12 +21,12 @@
     <div class="row">
         <div class="three wide column">
             <div class="ui container">
-                <div class="ui segment">
-                    <h3>All teams competing in the {{year}} World Cup</h3>
+                <div class="ui piled segment">
+                    <h3>All teams competing in the {{year}} World Cup.</h3>
                     <div class="ui one column grid">
                         <div class="sixteen wide column">
                             <div class="ui container">
-                                <button id="allteams" class="ui red inverted button" type="button"> Click to see!</button>
+                                <button id="allteams" class="fluid ui red inverted button" type="button"> Click to see!</button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,23 @@
         </div>
         <div class="three wide column">
             <div class="ui container">
-                <div class="ui segment">
+                <div class="ui inverted piled segment">
+                        <table class="ui selectable inverted table">
+                                <thead>
+                                  <tr>
+                                    <th><i class="trophy icon"></th>
+                                    <th class="right aligned">Country</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in range(3,7) %}
+                                  <tr>
+                                    <td>{{i - 2 }}</td>
+                                    <td class="right aligned">{{data[0][i]}}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                              </table>
 
                 </div>
             </div>

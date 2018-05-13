@@ -7,31 +7,40 @@
             <a class="active item">
         Home
     </a>
-            <a class="item">
-      Messages
-    </a>
-            <a class="item">
-      Friends
+            <a class="right item">
+      Contact us
     </a>
         </div>
     </div>
 </div>
 <div class="ui grid">
     <div class="row">
-        <div class="eight wide column">
             <div class="ui container">
                 <div class="ui segment">
-                    {% for player in roster%}
-                        <li>{{player}}</li>
-                    {% endfor %}
+                        <table class="ui striped table">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Number</th>
+                                    <th>Goals</th>
+                                    <th>Yellow Cards</th>
+                                    <th>Red Cards</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for player in roster%}
+                                    <tr>
+                                      <td>{{ player }}</td>
+                                      <td>{{ roster[player]["Number"] }}</td>
+                                      <td class="positive">{{ roster[player]["Goals"] }}</td>
+                                      <td class="warning">{{ roster[player]["Yellow Cards"] }}</td>
+                                      <td class="negative">{{ roster[player]["Red Cards"] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-        <div class="eight wide column">
-            <div class="ui container">
-                <div class="ui segment"></div>
-            </div>
-        </div>
     </div>
 </div>
 
