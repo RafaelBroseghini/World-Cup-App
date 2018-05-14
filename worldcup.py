@@ -8,6 +8,13 @@ def get_years():
     res = cur.fetchall()
     return res
 
+def get_groups_wc_18():
+    conn = sqlite3.connect("wcdata/groups18.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * from groups18")
+    res = cur.fetchall()
+    return res
+
 def get_info_on_year():
     conn = sqlite3.connect("wcdata/worldcups.db")
     cur = conn.cursor()
@@ -17,7 +24,6 @@ def get_info_on_year():
     return res, year
 
 def get_winners():
-    year = request.args.get("q")
     conn = sqlite3.connect("wcdata/worldcups.db")
     cur = conn.cursor()
     cur.execute("select winner, count(winner) from worldcups group by winner ORDER BY COUNT(winner) DESC;")
@@ -72,7 +78,6 @@ def build_roster(lst1, lst2):
             elif p[1] in players_dict and p[2] != "" and p[0] == m:
                 players_dict[p[1]][p[2]] = 1 
     return players_dict
-    # return matches_dict
 
 def build_stats(roster):
     stats_dict = {}

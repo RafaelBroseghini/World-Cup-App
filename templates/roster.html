@@ -1,5 +1,6 @@
 {% extends "bootstrap/base.html" %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" /> {% endblock %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" /> 
+<link rel="stylesheet" href="static/css/styles.css">{% endblock %} {% block content %}
 <div class="ui inverted segment">
     <div class="ui container">
 
@@ -19,8 +20,8 @@
 <div class="ui grid">
     <div class="row">
             <div class="ui container">
-                <div class="ui segment">
-                        <table class="ui striped table">
+                <div class="ui inverted segment">
+                        <table class="ui inverted selectable table">
                                 <thead>
                                   <tr>
                                     <th>Name</th>
@@ -35,9 +36,9 @@
                                     <tr>
                                       <td>{{ player }}</td>
                                       <td>{{ roster[player]["Number"] }}</td>
-                                      <td class="positive">{{ roster[player]["Goals"] }}</td>
-                                      <td class="warning">{{ roster[player]["Yellow Cards"] }}</td>
-                                      <td class="negative">{{ roster[player]["Red Cards"] }}</td>
+                                      <td class="">{{ roster[player]["Goals"] }}</td>
+                                      <td class="">{{ roster[player]["Yellow Cards"] }}</td>
+                                      <td class="">{{ roster[player]["Red Cards"] }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

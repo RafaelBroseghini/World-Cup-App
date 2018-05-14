@@ -1,6 +1,6 @@
 $(function(){
   $('#allteams').click(function(){
-    $('.longer.modal')
+    $('.modal')
       .modal({
         blurring: true
       })

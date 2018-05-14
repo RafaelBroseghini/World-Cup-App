@@ -9,9 +9,10 @@ Bootstrap(app)
 
 @app.route("/")
 def index():
+    groups = get_groups_wc_18()
     winners = get_winners()
     data = get_years()
-    return render_template("index.html", years = data, winners=winners)
+    return render_template("index.html", years = data, winners=winners, groups = groups)
 
 @app.route("/getworldcup")
 def process_form():
