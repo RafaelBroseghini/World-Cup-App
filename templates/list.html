@@ -6,7 +6,7 @@
     <div class="ui container">
 
         <div class="ui inverted massive secondary menu">
-            <a class="item" href="/">
+            <a class="item" href="/home">
         Home
     </a>
             <a class="active item">
@@ -37,14 +37,12 @@
                           <!-- <li>News may contain citation to the year of choice.</li> -->
                         </ul>
                         <hr>
-                        <p>Powered by Kaggle.com</p>
+                        <a class="ui fluid blue inverted button" href="https://www.kaggle.com/abecklas/fifa-world-cup/data" target="_blank">Powered by Kaggle.com</a>
                       </div>
         <!-- </div> -->
                     <div class="ui one column grid">
                         <div class="sixteen wide column">
-                            <div class="ui container">
-                                <button id="allteams" class="fluid ui red inverted button" type="button"> Click to see!</button>
-                            </div>
+                                <button id="allteams" class="fluid ui blue button" type="button"> Click to see!</button>
                         </div>
                     </div>
                 </div>
@@ -54,7 +52,7 @@
             <div class="ui container">
                 <div class="ui inverted  segment">
                     <div class="ui container">
-                        <h1 class="text-center">The {{year}} World Cup summarized!</h1>
+                        <h1 class="text-center">The <span id="year">{{year}}</span> World Cup summarized!</h1>
                         <h2 class="ui inverted header">Dear Futebol fans,</h2>
                         <hr style="background:white;">
                         <div class="ui four inverted statistics">
@@ -134,7 +132,7 @@
                                   <li>News may contain citation to the year of choice.</li>
                                 </ul>
                                 <hr>
-                                <p>Powered by newsapi.org</p>
+                                <a class="ui fluid blue inverted button" href="https://newsapi.org" target="_blank">Powered by newsapi.org</a>
                               </div>
                 </div>
             </div>
@@ -142,9 +140,10 @@
         <div class="ten wide column">
             <div class="ui container">
                 <div class="ui  segment">
-                    <h1 class="ui header center aligned">
+                    <!-- <h1 class="ui header center aligned">
                         News related with the {{year}} World Cup.
-                    </h1>
+                    </h1> -->
+                    <button class="ui fluid massive blue button">News related with the {{year}} World Cup.</button>
                     <hr>
                     <div class="ui container">
                         <div class="ui divided items">
@@ -181,7 +180,7 @@
             </div>
             <div class="extra">
                 <div class="ui right floated item">
-                    <a class="ui button" href="{{news["articles"][n]["url"]}}""">
+                    <a class="ui blue button" href="{{news["articles"][n]["url"]}}""" target="_blank">
                         Read
                         <i class="right chevron icon"></i>
                     </a>
@@ -229,22 +228,9 @@
                                 </div>
                                 <hr> 
                                 <div class="ui one inverted statistics">
-                                        <div class="statistic">
-                                                <!-- <div class="ui message"> -->
-
-                                                        <div class="ui inverted relaxed divided list">
-                                                            {% for c in range(0,hosts|length) %}
-                                                            <div class="item">
-                                                                    <div class="content">
-                                                                      <div class="header text-center"><a class="ui fluid black button" href="https://en.wikipedia.org/wiki/{{hosts[c][0]}}" target="_blank">{{hosts[c][0]}}</a></div>
-                                                                    </div>
-                                                                  </div>
-                                                            {% endfor %}
-                                                        </div>
-                                                      <!-- </div> -->
-                                            <div class="label">
-                                                Host Cities
-                                            </div>
+                                    <button class="ui button blue fluid clicker" onclick="get_cities()">{{year}} World Cup Host Cities<i class=" arrow right icon"></i></button>
+                                        <div class="statistic cities">
+                                            <div class="ui inverted relaxed divided list hosts"></div>
                                         </div>
                                         </div>
                                         <hr>                       
@@ -282,4 +268,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 <script type="text/javascript" src="/static/js/effects.js"></script>
+<script type="text/javascript" src="/static/js/cities.js"></script>
 {% endblock %}

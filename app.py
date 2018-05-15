@@ -1,6 +1,6 @@
 import requests
 import sqlite3
-from flask import Flask, Response, request, render_template
+from flask import Flask, Response, request, render_template, jsonify
 from flask_bootstrap import Bootstrap
 from worldcup import *
 
@@ -9,6 +9,10 @@ Bootstrap(app)
 
 @app.route("/")
 def index():
+    return render_template("landing.html")
+
+@app.route("/home")
+def home():
     groups = get_groups_wc_18()
     winners = get_winners()
     data = get_years()
@@ -30,6 +34,20 @@ def process_roster():
     roster = build_roster(matches, players)
     stats = build_stats(roster)
     return render_template("roster.html", roster=stats)
+
+@app.route("/get_cities")
+def show_cities():
+    cities = {}
+    year = request.args.get("y")
+    print(year)
+    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
+    cur = conn.cursor()
+    cur.execute("select distinct(city) from worldcupsmatches where year = "+year+"")
+    res = cur.fetchall()
+    for i in range(0,len(res)):
+        cities["City"+str(i)] = res[i][0] 
+        
+    return jsonify(cities)
 
 if __name__ == '__main__':
     app.run(debug=True)
