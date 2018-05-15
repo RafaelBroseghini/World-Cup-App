@@ -24,7 +24,22 @@
         <div class="three wide column">
             <div class="ui container">
                 <div class="ui inverted  segment">
-                    <h3>All teams competing in the {{year}} World Cup.</h3>
+                    <!-- <h3>All teams competing in the {{year}} World Cup.</h3> -->
+                    <div class="ui message">
+                        <div class="header">
+                          Note on Participant Teams
+                        </div>
+                        <ul class="list">
+                          <li>Click the button below to peek at some of the rosters that competed in 
+                              {{year}} World Cup.
+                          </li>
+                          <!-- <li>News may only cite World Cup on year of choice.</li> -->
+                          <!-- <li>News may contain citation to the year of choice.</li> -->
+                        </ul>
+                        <hr>
+                        <p>Powered by Kaggle.com</p>
+                      </div>
+        <!-- </div> -->
                     <div class="ui one column grid">
                         <div class="sixteen wide column">
                             <div class="ui container">
@@ -116,6 +131,7 @@
                                 <ul class="list">
                                   <li>News may refer exclusively to the World Cup on year of choice.</li>
                                   <li>News may only cite World Cup on year of choice.</li>
+                                  <li>News may contain citation to the year of choice.</li>
                                 </ul>
                                 <hr>
                                 <p>Powered by newsapi.org</p>
@@ -183,8 +199,57 @@
 </div>
 <div class="three wide column">
     <div class="ui container">
-        <div class="ui segment">
+        <div class="ui inverted segment">
+            <h1 class="text-center">More stats!</h1>
+            <hr>
+                <div class="ui one inverted statistics">
+                        <div class="statistic">
+                            <div class="value">
+                                {% set gm = data[0][7]/data[0][9] %}
+                                {% set gm = gm|string %}
+                                <i class="futbol outline icon animated bounceInDown"></i> {{gm[0:4]}}
+                            </div>
+                            <div class="label">
+                                Goals/Match
+                            </div>
+                        </div>
+                        </div>
+                        <hr>
+                        <div class="ui one inverted statistics">
+                                <div class="statistic">
+                                    <div class="value">
+                                        <p style="font-size:20px;">{{high_score[0][0][0]}}:<button class="ui button green mini circular">{{high_score[0][0][1]}}</button>  |
+                                             {{high_score[0][0][2]}}:<button class="ui button green mini circular">{{high_score[0][0][3]}}</button></p>
+                                        <p style="font-size:20px;">{{high_score[1][0][0]}}:<button class="ui button green mini circular">{{high_score[1][0][1]}}</button>  |
+                                             {{high_score[1][0][2]}}:<button class="ui button green mini circular">{{high_score[1][0][3]}}</button></p>
+                                    </div>
+                                    <p></p>
+                                    <div class="label">
+                                        Highest Scoring Matches
+                                    </div>
+                                </div>
+                                </div>
+                                <hr> 
+                                <div class="ui one inverted statistics">
+                                        <div class="statistic">
+                                                <!-- <div class="ui message"> -->
 
+                                                        <div class="ui inverted relaxed divided list">
+                                                            {% for c in range(0,hosts|length) %}
+                                                            <div class="item">
+                                                                    <div class="content">
+                                                                      <div class="header text-center"><a class="ui fluid black button" href="https://en.wikipedia.org/wiki/{{hosts[c][0]}}" target="_blank">{{hosts[c][0]}}</a></div>
+                                                                    </div>
+                                                                  </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                      <!-- </div> -->
+                                            <div class="label">
+                                                Host Cities
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <hr>                       
         </div>
     </div>
 </div>

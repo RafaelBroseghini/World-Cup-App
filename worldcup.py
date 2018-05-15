@@ -30,6 +30,22 @@ def get_winners():
     res = cur.fetchall()
     return res
 
+def get_fun_facts():
+    fun_facts_lst = []
+    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
+    cur = conn.cursor()
+    year = request.args.get("q")
+    cur.execute("select hometeaminit, hometeamgoals, awayteaminit, max(awayteamgoals) from worldcupsmatches where year = "+year+"")
+    res = cur.fetchall()
+    fun_facts_lst.append(res)
+    cur.execute("select hometeaminit, max(hometeamgoals), awayteaminit, awayteamgoals from worldcupsmatches where year = "+year+"")
+    res = cur.fetchall()
+    fun_facts_lst.append(res)
+    cur.execute("select distinct(city) from worldcupsmatches where year = "+year+"")
+    res = cur.fetchall()
+    fun_facts_lst.append(res)
+    return fun_facts_lst
+
 def get_teams_in_wc():
     counter_dict = {}
     year = request.args.get("q")
