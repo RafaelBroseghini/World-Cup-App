@@ -6,10 +6,10 @@ def get_years():
     db = records.Database('sqlite:///wcdata/worldcups.db')
     rows = db.query('select distinct(year) from worldcups').all()
     # 
-    conn = sqlite3.connect("wcdata/worldcups.db")
-    cur = conn.cursor()
-    cur.execute("select distinct(year) from worldcups")
-    res = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/worldcups.db")
+    # cur = conn.cursor()
+    # cur.execute("select distinct(year) from worldcups")
+    # res = cur.fetchall()
     # 
     return rows
 
@@ -17,10 +17,10 @@ def get_groups_wc_18():
     db = records.Database('sqlite:///wcdata/groups18.db')
     rows = db.query("SELECT * from groups18").all()
     # 
-    conn = sqlite3.connect("wcdata/groups18.db")
-    cur = conn.cursor()
-    cur.execute("SELECT * from groups18")
-    res = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/groups18.db")
+    # cur = conn.cursor()
+    # cur.execute("SELECT * from groups18")
+    # res = cur.fetchall()
     # 
     return rows
 
@@ -29,10 +29,10 @@ def get_info_on_year():
     db = records.Database('sqlite:///wcdata/worldcups.db')
     rows = db.query("select * from worldcups where year = "+year+"").all()
     # 
-    conn = sqlite3.connect("wcdata/worldcups.db")
-    cur = conn.cursor()
-    cur.execute("select * from worldcups where year = "+year+"")
-    res = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/worldcups.db")
+    # cur = conn.cursor()
+    # cur.execute("select * from worldcups where year = "+year+"")
+    # res = cur.fetchall()
     # 
     return rows, year
 
@@ -48,18 +48,20 @@ def get_winners():
     return rows
 
 def get_fun_facts():
-    fun_facts_lst = []
-    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
-    cur = conn.cursor()
     year = request.args.get("q")
-    cur.execute("select hometeaminit, hometeamgoals, awayteaminit, max(awayteamgoals) from worldcupsmatches where year = "+year+"")
-    res = cur.fetchall()
+    fun_facts_lst = []
+    # conn = sqlite3.connect("wcdata/worldcupsmatches.db")
+    # cur = conn.cursor()
+    # cur.execute("select hometeaminit, hometeamgoals, awayteaminit, max(awayteamgoals) from worldcupsmatches where year = "+year+"")
+    db = records.Database('sqlite:///wcdata/worldcupsmatches.db')
+    res = db.query("select hometeaminit, hometeamgoals, awayteaminit, max(awayteamgoals) from worldcupsmatches where year = "+year+"").all()
+    # res = cur.fetchall()
     fun_facts_lst.append(res)
-    cur.execute("select hometeaminit, max(hometeamgoals), awayteaminit, awayteamgoals from worldcupsmatches where year = "+year+"")
-    res = cur.fetchall()
+    res = db.query("select hometeaminit, max(hometeamgoals), awayteaminit, awayteamgoals from worldcupsmatches where year = "+year+"")
+    # res = cur.fetchall()
     fun_facts_lst.append(res)
-    cur.execute("select distinct(city) from worldcupsmatches where year = "+year+"")
-    res = cur.fetchall()
+    res = db.query("select distinct(city) from worldcupsmatches where year = "+year+"")
+    # res = cur.fetchall()
     fun_facts_lst.append(res)
     return fun_facts_lst
 
@@ -86,18 +88,23 @@ def get_teams_in_wc():
 
 def get_roster_from_country():
     country = request.args.get("team")
-    conn = sqlite3.connect("wcdata/worldcupplayers.db")
-    cur = conn.cursor()
-    cur.execute('''select matchid, playername, event, shirtnumber from worldcupplayers where teaminit = {}'''.format("'"+country+"'"))
-    players = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/worldcupplayers.db")
+    # cur = conn.cursor()
+    # cur.execute('''select matchid, playername, event, shirtnumber from worldcupplayers where teaminit = {}'''.format("'"+country+"'"))
+    db = records.Database('sqlite:///wcdata/worldcupplayers.db')
+    players = db.query('''select matchid, playername, event, shirtnumber from worldcupplayers where teaminit = {}'''.format("'"+country+"'")).all()
+    # players = cur.fetchall()
     return players
 
 def get_matches_in_year():
     year = request.args.get("year")
-    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
-    cur = conn.cursor()
-    cur.execute('''select matchid, date_txt from worldcupsmatches where year = {}'''.format("'"+year+"'"))
-    matches = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/worldcupsmatches.db")
+    # cur = conn.cursor()
+    # cur.execute('''select matchid, date_txt from worldcupsmatches where year = {}'''.format("'"+year+"'"))
+    # matches = cur.fetchall()
+    db = records.Database('sqlite:///wcdata/worldcupsmatches.db')
+    matches = db.query('''select matchid, date_txt from worldcupsmatches where year = {}'''.format("'"+year+"'")).all()
+
     return matches
 
 def build_roster(lst1, lst2):
