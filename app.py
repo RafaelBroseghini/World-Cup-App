@@ -1,5 +1,6 @@
 import requests
 import sqlite3
+import records
 from flask import Flask, Response, request, render_template, jsonify
 from flask_bootstrap import Bootstrap
 from worldcup import *
@@ -21,9 +22,9 @@ def home():
 @app.route("/getworldcup")
 def process_form():
     participants = get_teams_in_wc()
+    print(participants)
     res = get_info_on_year()
     fun_facts = get_fun_facts()
-    print(fun_facts)
     news = requests.get("https://newsapi.org/v2/everything?sources=espn,bbc-sport&q=fifa+world+cup+"+res[1]+"&apiKey=36071cd47bf64942aeb3ae57d16f664c").json()
     return render_template("list.html", data=res[0], news=news, year=res[1], participants=participants, wc_instace = res[0][0][1], high_score = fun_facts[0:2], hosts=fun_facts[2])
 

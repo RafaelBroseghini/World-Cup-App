@@ -1,34 +1,51 @@
 import sqlite3
+import records
 from flask import request
 
 def get_years():
+    db = records.Database('sqlite:///wcdata/worldcups.db')
+    rows = db.query('select distinct(year) from worldcups').all()
+    # 
     conn = sqlite3.connect("wcdata/worldcups.db")
     cur = conn.cursor()
     cur.execute("select distinct(year) from worldcups")
     res = cur.fetchall()
-    return res
+    # 
+    return rows
 
 def get_groups_wc_18():
+    db = records.Database('sqlite:///wcdata/groups18.db')
+    rows = db.query("SELECT * from groups18").all()
+    # 
     conn = sqlite3.connect("wcdata/groups18.db")
     cur = conn.cursor()
     cur.execute("SELECT * from groups18")
     res = cur.fetchall()
-    return res
+    # 
+    return rows
 
 def get_info_on_year():
+    year = request.args.get("q")
+    db = records.Database('sqlite:///wcdata/worldcups.db')
+    rows = db.query("select * from worldcups where year = "+year+"").all()
+    # 
     conn = sqlite3.connect("wcdata/worldcups.db")
     cur = conn.cursor()
-    year = request.args.get("q")
     cur.execute("select * from worldcups where year = "+year+"")
     res = cur.fetchall()
-    return res, year
+    # 
+    return rows, year
 
 def get_winners():
-    conn = sqlite3.connect("wcdata/worldcups.db")
-    cur = conn.cursor()
-    cur.execute("select winner, count(winner) from worldcups group by winner ORDER BY COUNT(winner) DESC;")
-    res = cur.fetchall()
-    return res
+    db = records.Database('sqlite:///wcdata/worldcups.db')
+    rows = db.query("select winner, count(winner) from worldcups group by winner ORDER BY COUNT(winner) DESC;").all()
+    # 
+    # conn = sqlite3.connect("wcdata/worldcups.db")
+    # cur = conn.cursor()
+    # cur.execute("select winner, count(winner) from worldcups group by winner ORDER BY COUNT(winner) DESC;")
+    # res = cur.fetchall()
+    # 
+    return rows
 
 def get_fun_facts():
     fun_facts_lst = []
@@ -49,12 +66,17 @@ def get_fun_facts():
 def get_teams_in_wc():
     counter_dict = {}
     year = request.args.get("q")
-    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
-    cur = conn.cursor()
-    cur.execute("select hometeam, hometeaminit from worldcupsmatches where year = "+year+"")
-    home_teams = cur.fetchall()
-    cur.execute("select awayteam, awayteaminit from worldcupsmatches where year = "+year+"")
-    away_teams = cur.fetchall()
+    # conn = sqlite3.connect("wcdata/worldcupsmatches.db")
+    # cur = conn.cursor()
+    db = records.Database('sqlite:///wcdata/worldcupsmatches.db')
+    home_teams = db.query("select hometeam, hometeaminit from worldcupsmatches where year = "+year+"").all()
+    print(home_teams)
+    # cur.execute("select hometeam, hometeaminit from worldcupsmatches where year = "+year+"")
+    # home_teams = cur.fetchall()
+    db = records.Database('sqlite:///wcdata/worldcupsmatches.db')
+    away_teams = db.query("select awayteam, awayteaminit from worldcupsmatches where year = "+year+"").all()
+    # cur.execute("select awayteam, awayteaminit from worldcupsmatches where year = "+year+"")
+    # away_teams = cur.fetchall()
     teams = [home_teams, away_teams]
     for i in range(len(teams)):
         for d in teams[i]:
