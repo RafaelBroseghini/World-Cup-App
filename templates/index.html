@@ -60,9 +60,11 @@
                                     </thead>
                                     <tbody>
                                         {% for t in groups[g] %}
-                                        <tr>
-                                            <td>{{t}}</td>
-                                        </tr>
+                                            {% if t != groups[g]["gp"] %}
+                                            <tr>
+                                                <td>{{t}}</td>
+                                            </tr>
+                                            {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
