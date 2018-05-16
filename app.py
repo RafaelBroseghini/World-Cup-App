@@ -1,5 +1,4 @@
 import requests
-# import sqlite3
 import records
 from flask import Flask, Response, request, render_template, jsonify
 from flask_bootstrap import Bootstrap
@@ -38,16 +37,7 @@ def process_roster():
 
 @app.route("/get_cities")
 def show_cities():
-    cities = {}
-    year = request.args.get("y")
-    print(year)
-    conn = sqlite3.connect("wcdata/worldcupsmatches.db")
-    cur = conn.cursor()
-    cur.execute("select distinct(city) from worldcupsmatches where year = "+year+"")
-    res = cur.fetchall()
-    for i in range(0,len(res)):
-        cities["City"+str(i)] = res[i][0] 
-        
+    cities = get_cities()
     return jsonify(cities)
 
 if __name__ == '__main__':
