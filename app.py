@@ -21,7 +21,6 @@ def home():
 @app.route("/getworldcup")
 def process_form():
     participants = get_teams_in_wc()
-    print(participants)
     res = get_info_on_year()
     fun_facts = get_fun_facts()
     news = requests.get("https://newsapi.org/v2/everything?sources=espn,bbc-sport&q=fifa+world+cup+"+res[1]+"&apiKey=36071cd47bf64942aeb3ae57d16f664c").json()

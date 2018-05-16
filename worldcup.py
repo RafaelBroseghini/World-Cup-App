@@ -68,7 +68,6 @@ def get_cities():
     rows = db.query("select distinct(city) from worldcupsmatches where year = "+year+"").all()
     for i in range(0,len(rows)):
         cities["City"+str(i)] = rows[i][0] 
-    print(cities)
     return cities
 
 def build_roster(lst1, lst2):
