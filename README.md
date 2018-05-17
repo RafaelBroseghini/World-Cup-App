@@ -8,21 +8,21 @@
  * *All Time Winners*
  * *Fun Facts 1930-2014* -> Room for improvement.
 
- ## Install & Usage:
+ ## Install & Usage: :computer:
 * *From the command line:*
 * `git clone git@github.com:RafaelBroseghini/World-Cup-App.git`
 * `cd World-Cup-App`
 * `python3 app.py`
 
-## Modifications :hammer:
+## Modifications: :hammer:
   * Modify worldcup.py as desired to implement new features or improve current ones.
 
-## Future Work :crystal_ball:
+## Future Work: :crystal_ball:
   * Team's journey (**Matchups**) for World Cup of choice.
   * Add row **Flag** that will store emoji names for each country's flag.
   * Add some famous players social media accounts on -> index.html
 
-## Issues :heavy_exclamation_mark: :anger: :heavy_exclamation_mark: :anger: 
+## Issues: :heavy_exclamation_mark: :anger: :heavy_exclamation_mark: :anger: 
 * Some entries on the Database are misplaced. -> *Will fix it.*
 
 ## Contributing :muscle:
