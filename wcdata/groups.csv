@@ -7,27 +7,3 @@ E,Brazil,Switzerland,Costa Rica,Serbia
 F,Germany,Mexico,Sweden,South Korea
 G,Belgium,Panama,Tunisia,England
 H,Poland,Senegal,Colombia,Japan
-
-
-
-
-<div class="ui modal">
-    <i class="close icon"></i>
-    <div class="header">
-        Participant teams in the {{year}} World Cup.
-    </div>
-    <div class="image content">
-        <div class="ui container">
-            <form class="" action="/get_roster" method="get">
-                <input type="text" value={{year}} name="year" style="visibility:hidden;">
-                <div class="ui five column grid">
-                    {% for team in participants %}
-                    <div class="three wide column">
-                        <button class="fluid ui inverted red button" type="submit" name="team" value='{{participants[team]}}'>{{team}}</button>
-                    </div>
-                    {% endfor %}
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
