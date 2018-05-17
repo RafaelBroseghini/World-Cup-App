@@ -1,4 +1,4 @@
-# World Cup Funcyclopedia
+# World Cup Funcyclopedia :soccer: :books:
 * Web based application for FIFA World Cup Geeks and Futbol lovers.
 * Hosted on:
   * [Python Anywhere](http://tortellinibroseghini.pythonanywhere.com/) -> *Active*
@@ -8,7 +8,7 @@
  * *All Time Winners*
  * *Fun Facts 1930-2014* -> Room for improvement.
 
- ## Install & Usage
+ ## Install & Usage:
 * *From the command line:*
 * `git clone git@github.com:RafaelBroseghini/World-Cup-App.git`
 * `cd World-Cup-App`
@@ -22,10 +22,10 @@
   * Add row **Flag** that will store emoji names for each country's flag.
   * Add some famous players social media accounts on -> index.html
 
-## Issues
+## Issues :heavy_exclamation_mark:
 * Some entries on the Database are misplaced. -> *Will fix it.*
 
-## Contributing
+## Contributing :muscle:
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
