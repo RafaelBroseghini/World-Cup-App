@@ -3,7 +3,7 @@
 * Hosted on:
   * [Python Anywhere](http://tortellinibroseghini.pythonanywhere.com/) -> *Active*
 
-## Features:
+## Features: :100:
  * *FIFA 2018 World Cup Countdown clock*
  * *All Time Winners*
  * *Fun Facts 1930-2014* -> Room for improvement.
@@ -17,12 +17,12 @@
 ## Modifications :hammer:
   * Modify worldcup.py as desired to implement new features or improve current ones.
 
-## Future Work
+## Future Work :crystal_ball:
   * Team's journey (**Matchups**) for World Cup of choice.
   * Add row **Flag** that will store emoji names for each country's flag.
   * Add some famous players social media accounts on -> index.html
 
-## Issues :heavy_exclamation_mark:
+## Issues :heavy_exclamation_mark: :anger: :heavy_exclamation_mark: :anger: 
 * Some entries on the Database are misplaced. -> *Will fix it.*
 
 ## Contributing :muscle:
