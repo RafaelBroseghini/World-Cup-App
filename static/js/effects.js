@@ -50,5 +50,5 @@ function getTimeRemaining(endtime) {
   }
   
 //   var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-var deadline = '2018-06-14'
+var deadline = '2022-06-14'
   initializeClock('clockdiv', deadline);
