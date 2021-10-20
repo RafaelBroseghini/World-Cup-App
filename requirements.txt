@@ -16,7 +16,7 @@ openpyxl==2.5.3
 pkg-resources==0.0.0
 PyYAML==5.4
 records==0.5.2
-requests==2.18.4
+requests==2.20.0
 SQLAlchemy==1.2.7
 tablib==0.12.1
 unicodecsv==0.14.1
